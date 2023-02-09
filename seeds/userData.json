@@ -1,0 +1,27 @@
+[
+  {
+    "user_name": "Test",
+    "email": "Testy",
+    "password": "pw"
+  },
+  {
+    "user_name": "George",
+    "email": "George@gmail.com",
+    "password": "password12345"
+  },
+  {
+    "user_name": "Tara",
+    "email": "Tara440@aol.com",
+    "password": "password12345"
+  },
+  {
+    "user_name": "Ingot",
+    "email": "Ingot99@msn.com",
+    "password": "password12345"
+  },
+  {
+    "user_name": "Blarry",
+    "email": "BlearyBlarry@yahoo.com",
+    "password": "password12345"
+  }
+]
