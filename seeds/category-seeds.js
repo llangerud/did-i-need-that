@@ -1,6 +1,6 @@
 const { Category } = require('../models');
 
-const usercatData = [
+const categoryData = [
   {
     name: "Cars",
     user_id: 1,
@@ -23,6 +23,6 @@ const usercatData = [
   },
 ];
 
-const seedUserCategories = () => Category.bulkCreate(usercatData);
+const seedCategories = () => Category.bulkCreate(categoryData);
 
-module.exports = seedUserCategories;
+module.exports = seedCategories;
