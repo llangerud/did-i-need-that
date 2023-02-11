@@ -32,6 +32,11 @@ const sess = {
 };
 
 app.use(session(sess));
+// https://stackoverflow.com/questions/44883228/how-to-get-the-express-session-variable-in-all-the-handlebars-pages-right-now-i
+app.use(function (req, res, next) {
+  res.locals.session = req.session;
+  next();
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

@@ -14,6 +14,14 @@ router.get('/', (req, res) => {
 router.get('/dashboard', (req, res) => {
   return res.render('dashboard');
 });
+router.get('/homepage', (req, res) => {
+  return res.render('homepage');
+});
 
-
+router.get("/login", (req, res) => {
+  res.render("login");
+});
+router.get("/signup", (req, res) => {
+  res.render("signup");
+});
 module.exports = router;
