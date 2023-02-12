@@ -3,14 +3,13 @@ const { Purchase } = require ('../../models');
 const withAuth = require('../../utils/auth');
 
 
+
 router.get('/', withAuth, async (req, res) => {
     try {
       const purchaseData = await Purchase.findAll();
-      res.status(200).json(purchaseData);
-    } catch (err) {
-      res.status(500).json(err);
+      res.render('didiuse', {purchaseData});
     }
-  });
+  );
 
 
 router.get('/:id', withAuth, async (req, res) => {
