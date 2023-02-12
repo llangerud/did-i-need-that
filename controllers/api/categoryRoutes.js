@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { Category } = require ('../../models');
-const withAuth = require('../../utils/auth');
+const auth = require('../../utils/auth');
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/', auth, async (req, res) => {
     try {
       const categoryData = await Category.findAll();
       res.status(200).json(categoryData);
@@ -11,7 +11,7 @@ router.get('/', withAuth, async (req, res) => {
     }
   });
 
-  router.get('/:id', withAuth, async (req, res) => {
+  router.get('/:id', auth, async (req, res) => {
     try {
       const categoryData = await Category.findByPk(req.params.id);
     res.status(200).json(categoryData);
@@ -21,7 +21,7 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 
-  router.post('/', withAuth, async (req, res) => {
+  router.post('/', auth, async (req, res) => {
     const body = req.body;
     try {
       const newCategory = await Category.create({
