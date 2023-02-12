@@ -1,15 +1,18 @@
 const router = require('express').Router();
 const { Purchase } = require ('../../models');
+const withAuth = require('../../utils/auth');
 
 
-router.get('/', async (req, res) => {
+
+router.get('/', withAuth, async (req, res) => {
+    try {
       const purchaseData = await Purchase.findAll();
       res.render('didiuse', {purchaseData});
     }
   );
 
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
     try {
       const purchaseData = await Purchase.findByPk(req.params.id);
     res.status(200).json(purchaseData);
@@ -19,7 +22,7 @@ router.get('/:id', async (req, res) => {
 });
 
 
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     const body = req.body;
     try {
       const newPurchase = await Purchase.create({
@@ -34,7 +37,7 @@ router.post('/', async (req, res) => {
 });
 
 
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     Purchase.update(req.body, {
       where: {
         id: req.params.id,
@@ -49,7 +52,7 @@ router.put('/:id', (req, res) => {
   });
 
 //currently NOT WORKING!!
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
     try {
       const purchaseData = await Purchase.destroy({
         where: {
