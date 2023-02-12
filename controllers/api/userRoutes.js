@@ -57,11 +57,12 @@ router.post('/', withAuth, async (req, res) => {
     }
   });
   
-  router.post('/logout', withAuth, (req, res) => {
-    if (req.session.loggedIn) {
+  router.post('/logout', (req, res) => {
+    if (req.session.logged_in) {
       req.session.destroy(() => {
         res.status(204).end();
       });
+      alert("logged out")
     } else {
       res.status(404).end();
     }
