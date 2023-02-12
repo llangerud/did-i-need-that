@@ -8,13 +8,15 @@ router.post('/', async (req, res) => {
       email: req.body.email,
       password: req.body.password
     });
-    console.log("user create",userData)
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.loggedIn = true;
-      req.session.user_name = userData.user_name
-      res.status(200).json(userData);
-    });
+    //leave commented out
+    // console.log("user create",userData)
+    // req.session.save(() => {
+    //   req.session.user_id = userData.id;
+    //   req.session.loggedIn = true;
+    //   req.session.user_name = userData.user_name
+    //   req.session.email = userData.email
+    //   res.status(200).json(userData);
+    // });
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
