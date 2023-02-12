@@ -1,18 +1,33 @@
 const router = require('express').Router();
 const { Purchase } = require ('../../models');
-const withAuth = require('../../utils/auth');
+const auth = require('../../utils/auth');
 
 
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/', auth, async (req, res) => {
     try {
       const purchaseData = await Purchase.findAll();
-      res.render('didiuse', {purchaseData});
+      res.status(200).json(purchaseData);
     }
-  );
+    catch {
+      console.log('error');
+    }
+  });
+
+  router.get('/byuser', auth, async (req, res)=> {
+    let allPurchasesByUser = await Purchase.findAll({
+      where: {user_id: req.session.user_id}
+    });
+    console.log(allPurchasesByUser);
+
+    let purchaseData = allPurchasesByUser.map((purchase)=> purchase.get({plain: true}));
+    console.log(purchaseData);
+
+    res.render('didiuse', {purchaseData});
+  });
 
 
-router.get('/:id', withAuth, async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
     try {
       const purchaseData = await Purchase.findByPk(req.params.id);
     res.status(200).json(purchaseData);
@@ -22,7 +37,7 @@ router.get('/:id', withAuth, async (req, res) => {
 });
 
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/', auth, async (req, res) => {
     const body = req.body;
     try {
       const newPurchase = await Purchase.create({
@@ -37,7 +52,7 @@ router.post('/', withAuth, async (req, res) => {
 });
 
 
-router.put('/:id', withAuth, (req, res) => {
+router.put('/:id', auth, (req, res) => {
     Purchase.update(req.body, {
       where: {
         id: req.params.id,
@@ -52,7 +67,7 @@ router.put('/:id', withAuth, (req, res) => {
   });
 
 //currently NOT WORKING!!
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     try {
       const purchaseData = await Purchase.destroy({
         where: {

@@ -1,14 +1,14 @@
+<form>
+
 {{#each purchaseData}}
+
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Default checkbox
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value={{purchaseData.name}} id="flexCheckChecked" checked>
+  <input class="form-check-input" type="checkbox" value={{this.name}} id="flexCheckChecked" checked>
   <label class="form-check-label" for="flexCheckChecked">
-    Checked checkbox
+    {{this.name}}
   </label>
 </div>
+
 {{/each}}
+<button type="submit" class="btn btn-primary" id="did-i-use-btn">Submit</button>
+</form>

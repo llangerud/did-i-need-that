@@ -26,14 +26,14 @@ const purchaseData = [
     name: 'Walkman',
     price: 300,
     mood: 'happy',
-    user_id: 3,
+    user_id: 4,
     category_id: 1
   },
   {
     name: 'Batteries',
     price: 10,
     mood: 'happy',
-    user_id: 3,
+    user_id: 5,
     category_id: 1
   },
 ];
