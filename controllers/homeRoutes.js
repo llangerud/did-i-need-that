@@ -2,7 +2,8 @@ const router = require('express').Router();
 const {User, Category, Purchase} = require('../models');
 const auth = require('../utils/auth');
 
-
+//needs a request to the server to pull category data and send it
+//(res.render('homepage', {name of variable});
 router.get('/', (req, res) => {
   try {
     res.render('homepage');

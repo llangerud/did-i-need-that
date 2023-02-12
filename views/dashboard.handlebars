@@ -1,0 +1,34 @@
+{{!-- dashboard display for the user currently set to three columns --}}
+
+<div class="container text-center pt-3">
+  <div class="row align-items-start">
+    <div class="col">
+      Add a new purchase
+    <div class="input-group mb-3">
+  <label class="input-group-text" for="inputGroupSelect01">Category</label>
+  <select class="form-select" id="inputGroupSelect01">
+    <option selected>Choose...</option>
+    {{!-- needs a list of all categories by userID from the server
+    and then makes a list of them to populate the drop down --}}
+    
+    {{!-- {{#each category as |category}}
+    <option value={{category}}>{{category}}</option>
+    {{/each}} --}}
+    
+    {{!-- placeholders so we can see how the page looks, will need to be removed --}}
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  
+    </select>
+</div>
+    </div>
+    <div class="col">
+      Purchases in the last two weeks
+      {{!-- Use a partial that has purchase data from the server --}}
+    </div>
+    <div class="col">
+      Menu with options to view more data
+    </div>
+  </div>
+</div>
