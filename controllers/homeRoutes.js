@@ -12,11 +12,25 @@ router.get('/', (req, res) => {
   }
 });
 
-router.get('/dashboard', (req, res) => {
-  return res.render('dashboard');
+router.get('/dashboard', async (req, res) => {
+    try {
+      const categoryData = await Category.findAll({
+        where: {user_id: req.session.user_id}
+      });
+      let category = categoryData.map((category)=> category.get({plain: true}));
+
+      console.log(category);
+
+     res.render('dashboard', {category});
+
+    } catch (err) {
+      res.status(500).json(err);
+    }
+
 });
+
 router.get('/homepage', (req, res) => {
-  return res.render('homepage');
+  res.render('homepage');
 });
 
 router.get("/login", (req, res) => {

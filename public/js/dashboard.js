@@ -1,25 +1,29 @@
-const renderAddPurchase = async (event) => {
+const addPurchase = async (event) => {
     event.preventDefault();
-  
-   //rewrite the below to collect values from the purchase form and send to the database
-  //   const password = document.querySelector('#password-login').value.trim();
-  //   const email = document.querySelector('#email-login').value.trim();
-  //   if (email && password) {
+
+    const category = document.querySelector('#inputGroupSelect01').value.trim();
+    const name = document.querySelector('#name').value.trim();
+    const price = document.querySelector('#price').value.trim();
+    const mood = document.querySelector('#mood').value.trim();
+
+    console.log(category, name, price, mood);
+
+    if (category && name && price && mood) {
       
-  //     const response = await fetch('/api/users/login', {
-  //       method: 'post',
-  //       body: JSON.stringify({ email, password }),
-  //       headers: { 'Content-Type': 'application/json' },
-  //     });
+      const response = await fetch('/api/purchases/addnew', {
+        method: 'POST',
+        body: JSON.stringify({ category, name, price, mood }),
+        headers: { 'Content-Type': 'application/json' },
+      });
   
-  //     if (response.ok) {
-  //       // If successful, redirect the browser to the main page
-        
-  //       document.location.replace('/');
-  //     } else {
-  //       alert(response.statusText);
-  //     }
-  //   }
+      if (response.ok) {
+        // If successful, refreshes the dashboard to the main page
+        alert("purchase added!");
+        document.location.reload();
+      } else {
+        alert(response.statusText);
+      }
+    }
   };
   
-  document.querySelector('#add-purchase').addEventListener('submit', renderAddPurchase);
+  document.querySelector('#purchase-form').addEventListener('submit', addPurchase);

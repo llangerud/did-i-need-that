@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Purchase } = require ('../../models');
+const { Purchase, Category } = require ('../../models');
 const auth = require('../../utils/auth');
 
 
@@ -37,19 +37,32 @@ router.get('/:id', auth, async (req, res) => {
 });
 
 
-router.post('/', auth, async (req, res) => {
-    const body = req.body;
+router.post('/addnew', async (req, res) => {
     try {
-      const newPurchase = await Purchase.create({
-        ...body,
-        user_id: req.session.user_id,
+      const id = await Category.findOne({
+        where: {name: req.body.category}
       });
-  
-      res.json(newPurchase);
+      console.log(id);
+      console.log(req.body.price);
+      let price = parseInt(req.body.price);
+      console.log(price);
+      console.log(typeof price);
+      
+
+      const newPurchase = await Purchase.create({
+        name: req.body.name,
+        price: price,
+        mood: req.body.mood,
+        user_id: req.session.user_id,
+        category_id: id.dataValues.id
+      });
+      console.log(newPurchase);
+      res.status(200).json(newPurchase);
     } catch (err) {
       res.status(500).json(err);
     }
 });
+
 
 
 router.put('/:id', auth, (req, res) => {
