@@ -15,6 +15,7 @@ const purchaseData = [
     user_id: 2,
     category_id: 1
   },
+  
   {
     name: 'Pants',
     price: 5,

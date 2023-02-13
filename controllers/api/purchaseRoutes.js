@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const sequelize = require('../../config/connection');
 const { Purchase, Category } = require ('../../models');
 const auth = require('../../utils/auth');
 
@@ -26,6 +27,23 @@ router.get('/', auth, async (req, res) => {
     res.render('didiuse', {purchaseData});
   });
 
+  router.get('/totalspent', auth, async (req, res)=> {
+    let totalSpent = await Purchase.sum('price');
+    let totalSpentUnused = await Purchase.findAll({
+      where: {user_id: req.session.user_id},
+      attributes: [
+        'xused',
+        [sequelize.fn('sum', sequelize.col('price')), 'total_unused'],
+      ],
+      group: ['xused'],
+      raw: true
+    });
+    console.log(totalSpent);
+    console.log(totalSpentUnused);
+
+    res.render('totalspent', {totalSpent, totalSpentUnused});
+  });
+  
 
 router.get('/:id', auth, async (req, res) => {
     try {
