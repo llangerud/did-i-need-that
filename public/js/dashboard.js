@@ -31,3 +31,7 @@ const addPurchase = async (event) => {
   document.querySelector("#update-purchase").addEventListener('click', function viewList () {
     document.location.replace('/api/purchases/byuser')
   });
+
+  document.querySelector("#total-spent").addEventListener('click', function viewList () {
+    document.location.replace('/api/purchases/totalspent')
+  });
