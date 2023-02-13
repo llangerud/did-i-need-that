@@ -23,18 +23,18 @@
         </li>
         {{!-- Once the login/logout functionality is in, the javascript event listeners for these buttons will need the same logic 
         Then they can be uncommented and will toggle whether login/signout/sign in show up depending on if the user is logged in or not --}}
-        {{!-- {{#if req.session.logged_in}} --}}
+        {{#if session.logged_in}}
         <li class="nav-item">
           <a class="nav-link" href="/" id="logout">Log Out</a>
         </li>
-        {{!-- {{else}} --}}
+        {{else}}
         <li class="nav-item">
           <a class="nav-link" id="login">Login</a>
         </li>
          <li class="nav-item">
           <a class="nav-link" id="signup">Create Account</a>
         </li>
-        {{!-- {{/if}} --}}
+        {{/if}}
       </ul>
     </div>
   </div>
