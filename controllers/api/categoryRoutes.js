@@ -22,12 +22,14 @@ router.get('/', auth, async (req, res) => {
 
 
   router.post('/', auth, async (req, res) => {
-    const body = req.body;
     try {
-      const newCategory = await Category.create({
-        ...body,
-        user_id: req.session.user_id,
-      });
+      console.log(req.body);
+      let categories = req.body;
+      let createCat = categories.map(category =>({name:category.name, user_id:req.session.user_id}));
+      console.log(createCat);
+      const newCategory = await Category.bulkCreate(
+        createCat
+      );
   
       res.json(newCategory);
     } catch (err) {
