@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Purchase } = require ('../../models');
+const { Purchase, Category } = require ('../../models');
 const auth = require('../../utils/auth');
 
 
@@ -37,19 +37,45 @@ router.get('/:id', auth, async (req, res) => {
 });
 
 
-router.post('/', auth, async (req, res) => {
-    const body = req.body;
+router.post('/addnew', async (req, res) => {
     try {
-      const newPurchase = await Purchase.create({
-        ...body,
-        user_id: req.session.user_id,
+      const id = await Category.findOne({
+        where: {name: req.body.category}
       });
-  
-      res.json(newPurchase);
+          let price = parseInt(req.body.price);
+          
+
+      const newPurchase = await Purchase.create({
+        name: req.body.name,
+        price: price,
+        mood: req.body.mood,
+        user_id: req.session.user_id,
+        category_id: id.dataValues.id
+      });
+      
+      res.status(200).json(newPurchase);
     } catch (err) {
       res.status(500).json(err);
     }
 });
+
+
+router.put('/:id', auth, (req, res) => {
+  Purchase.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((updatedPurchase) => {
+      res.json(updatedPurchase);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
+
+
+
 
 
 router.put('/:id', auth, (req, res) => {

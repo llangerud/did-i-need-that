@@ -4,6 +4,7 @@
   <div class="row align-items-start">
     <div class="col">
       Add a new purchase
+  <form id="purchase-form">
     <div class="input-group mb-3">
   <label class="input-group-text" for="inputGroupSelect01">Category</label>
   <select class="form-select" id="inputGroupSelect01">
@@ -11,20 +12,29 @@
     {{!-- needs a list of all categories by userID from the server
     and then makes a list of them to populate the drop down --}}
     
-    {{!-- {{#each category as |category}}
-    <option value={{category}}>{{category}}</option>
-    {{/each}} --}}
-    
-    {{!-- placeholders so we can see how the page looks, will need to be removed --}}
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-  
+    {{#each category}}
+    <option value={{this.name}}>{{this.name}}</option>
+    {{/each}} 
     </select>
 </div>
+ <label for="name" class="form-label">Purchase Name</label>
+<input id="name"class="form-control" type="text" default="rollerskates" aria-label="default input example">
+<br>
+<label for="price" class="form-label">Purchase Price</label>
+<input id="price"class="form-control" type="text" default="item price" aria-label="default input example">
+<br>
+<label for="mood" class="form-label">Mood</label>
+<input id="mood"class="form-control" type="text" default="amazing" aria-label="default input example">
+<br>
+
+
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
     </div>
     <div class="col">
-      Purchases in the last two weeks
+      <button type="submit" class="btn btn-primary" id="update-purchase">update purchase use</button>
       {{!-- Use a partial that has purchase data from the server --}}
     </div>
     <div class="col">
@@ -32,3 +42,5 @@
     </div>
   </div>
 </div>
+
+<script src="/js/dashboard.js"></script>
