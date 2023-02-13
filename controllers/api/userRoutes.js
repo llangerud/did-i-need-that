@@ -12,14 +12,15 @@ router.post('/', auth, async (req, res) => {
     });
     //leave commented out
     // console.log("user create",userData)
-    // req.session.save(() => {
-    //   req.session.user_id = userData.id;
-    //   req.session.loggedIn = true;
-    //   req.session.user_name = userData.user_name
-    //   req.session.email = userData.email
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.loggedIn = true;
+      req.session.user_name = userData.user_name
+      req.session.email = userData.email
       res.status(200).json(userData);
     // });
-  } catch (err) {
+    });
+    } catch (err) {
     console.log(err);
     res.status(400).json(err);
   }
