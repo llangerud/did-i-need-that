@@ -21,7 +21,6 @@ router.get('/', auth, async (req, res) => {
     console.log(allPurchasesByUser);
 
     let purchaseData = allPurchasesByUser.map((purchase)=> purchase.get({plain: true}));
-    console.log(purchaseData);
 
     res.render('didiuse', {purchaseData});
   });
@@ -59,19 +58,22 @@ router.post('/addnew', async (req, res) => {
     }
 });
 
+//will update xused for each purchase in the array of checked purchases
+router.put('/updateused', auth, async (req, res) => {
+try {
+let names = req.body;
+console.log(names);
+ const updated = await Purchase.update({ xused: Sequelize.literal('xused + 1') }, { where: { name: { [Sequelize.Op.in]: names } } });
+ console.log(updated);
+ if (!updated) {
+  res.status(200).json({ message: 'Nothing was used' });
+  return;
+}
+res.status(200).json(updated);
+} catch (err) {
+  res.status(500).json(err);
+}
 
-router.put('/:id', auth, (req, res) => {
-  Purchase.update(req.body, {
-    where: {
-      id: req.params.id,
-    },
-  })
-    .then((updatedPurchase) => {
-      res.json(updatedPurchase);
-    })
-    .catch((err) => {
-      res.status(400).json(err);
-    });
 });
 
 

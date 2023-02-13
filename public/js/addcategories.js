@@ -6,8 +6,7 @@ event.preventDefault();
     const name3 = document.querySelector('#three').value.trim();
     const name4 = document.querySelector('#four').value.trim();
     const name = [{name:name1}, {name:name2}, {name:name3}, {name:name4}];
-      console.log(name);
-      console.log(JSON.stringify(name));
+      
 
       const response = await fetch('/api/categories', {
         method: 'POST',

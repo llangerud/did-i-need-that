@@ -23,7 +23,7 @@ router.get('/', auth, async (req, res) => {
 
   router.post('/', async (req, res) => {
     try {
-      console.log(req.body);
+      
       let categories = req.body;
       let createCat = categories.map(category =>({name:category.name, user_id:req.session.user_id}));
       const newCategory = await Category.bulkCreate(
