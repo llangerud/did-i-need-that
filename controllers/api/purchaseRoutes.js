@@ -27,7 +27,9 @@ router.get('/', auth, async (req, res) => {
   });
 
   router.get('/totalspent', auth, async (req, res)=> {
-    let totalSpent = await Purchase.sum('price');
+    let totalSpent = await Purchase.sum('price', {
+      where: {user_id: req.session.user_id},
+    });
     let totalSpentUnused = await Purchase.findAll({
       where: {user_id: req.session.user_id},
       attributes: [
