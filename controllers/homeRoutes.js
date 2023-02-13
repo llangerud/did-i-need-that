@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
 
 router.get('/dashboard', async (req, res) => {
     try {
+      
       const categoryData = await Category.findAll({
         where: {user_id: req.session.user_id}
       });
