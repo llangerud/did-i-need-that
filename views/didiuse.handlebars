@@ -1,9 +1,12 @@
+
+<h2>Here's everything you bought!</h2>
+<h4>uncheck any purchases you haven't used this month</h4>
 <form id="did-i-use-form">
 
 {{#each purchaseData}}
 
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value={{this.name}} id="flexCheckChecked" checked>
+  <input class="form-check-input" type="checkbox" value={{this.name}} id="flexCheckChecked"Checked>
   <label class="form-check-label" for="flexCheckChecked">
     {{this.name}}
   </label>
@@ -12,4 +15,9 @@
 {{/each}}
 <button type="submit" class="btn btn-primary" >Submit</button>
 </form>
+
+
+
+
+
 <script src="/js/didiuse.js"></script>

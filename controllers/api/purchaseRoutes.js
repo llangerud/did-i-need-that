@@ -42,12 +42,8 @@ router.post('/addnew', async (req, res) => {
       const id = await Category.findOne({
         where: {name: req.body.category}
       });
-      console.log(id);
-      console.log(req.body.price);
-      let price = parseInt(req.body.price);
-      console.log(price);
-      console.log(typeof price);
-      
+          let price = parseInt(req.body.price);
+          
 
       const newPurchase = await Purchase.create({
         name: req.body.name,
@@ -56,12 +52,29 @@ router.post('/addnew', async (req, res) => {
         user_id: req.session.user_id,
         category_id: id.dataValues.id
       });
-      console.log(newPurchase);
+      
       res.status(200).json(newPurchase);
     } catch (err) {
       res.status(500).json(err);
     }
 });
+
+
+router.put('/:id', auth, (req, res) => {
+  Purchase.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((updatedPurchase) => {
+      res.json(updatedPurchase);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
+
+
 
 
 

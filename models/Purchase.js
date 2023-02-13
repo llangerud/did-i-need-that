@@ -26,6 +26,11 @@ Purchase.init({
         allowNull: true
 
     },
+    xused: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+
+    },
 
     user_id: {
         type: DataTypes.INTEGER,

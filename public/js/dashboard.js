@@ -27,3 +27,7 @@ const addPurchase = async (event) => {
   };
   
   document.querySelector('#purchase-form').addEventListener('submit', addPurchase);
+
+  document.querySelector("#update-purchase").addEventListener('click', function viewList () {
+    document.location.replace('/api/purchases/byuser')
+  });
