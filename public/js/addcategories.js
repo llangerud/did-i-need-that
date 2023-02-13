@@ -18,7 +18,7 @@ event.preventDefault();
       if (response.ok) {
         // If successful, redirect the browser to the main page
         setTimeout(() => {
-           document.location.replace('/dashboard');
+           document.location.reload();
         }, 100);
 
        
