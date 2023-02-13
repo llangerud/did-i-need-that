@@ -3,7 +3,7 @@ const { User } = require ('../../models');
 const auth = require('../../utils/auth');
 
 
-router.post('/', auth, async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const userData = await User.create({
       user_name: req.body.user_name,
