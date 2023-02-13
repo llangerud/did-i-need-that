@@ -12,11 +12,11 @@ const signupFormHandler = async (event) => {
         method: 'POST',
         body: JSON.stringify({ user_name, password, email }),
         headers: { 'Content-Type': 'application/json' },
-        loggedIn: true
+        // loggedIn: true
       });
   
       if (response.ok) {
-        document.location.replace('/');
+        document.location.replace('/addcategory');
       } else {
         alert(response.statusText);
       }
