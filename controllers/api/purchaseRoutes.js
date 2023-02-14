@@ -82,9 +82,23 @@ router.post('/addnew', async (req, res) => {
 router.put('/updateused', auth, async (req, res) => {
 try {
 let names = req.body;
-console.log(names);
- const updated = await Purchase.update({ xused: Sequelize.literal('xused + 1') }, { where: { name: { [Sequelize.Op.in]: names } } });
- console.log(updated);
+
+//  const updated = await Purchase.update({ xused: sequelize.literal('xused + 1') }, { where: { name: { [sequelize.Op.in]: names } } });
+//  let updateXused = Purchase.findAll({
+//  where: {user_id: req.session.user_id} 
+ 
+const updated = await Purchase.update(
+  {xused: sequelize.literal('xused + 1')},
+  {
+    where: {
+      name: names,
+    },
+  }
+
+);
+
+//  })
+
  if (!updated) {
   res.status(200).json({ message: 'Nothing was used' });
   return;

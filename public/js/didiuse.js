@@ -24,6 +24,7 @@ async function usedForm (event) {
 
   if (response.ok) {
     // If successful, redirect the browser to the main page
+      alert('purchases updated!')
        document.location.replace('/dashboard');
  
   } else {
