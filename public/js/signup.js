@@ -5,18 +5,16 @@ const signupFormHandler = async (event) => {
     const user_name = document.querySelector('#user_name-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
     
-    console.log("Signup",user_name,password)
-
     if (user_name && password && email) {
       const response = await fetch('/api/users', {
         method: 'POST',
         body: JSON.stringify({ user_name, password, email }),
         headers: { 'Content-Type': 'application/json' },
-        // loggedIn: true
       });
   
       if (response.ok) {
         document.location.replace('/addcategory');
+
       } else {
         alert(response.statusText);
       }

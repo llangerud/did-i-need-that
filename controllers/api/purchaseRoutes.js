@@ -3,8 +3,6 @@ const sequelize = require('../../config/connection');
 const { Purchase, Category } = require ('../../models');
 const auth = require('../../utils/auth');
 
-
-
 router.get('/', auth, async (req, res) => {
     try {
       const purchaseData = await Purchase.findAll();
@@ -39,8 +37,14 @@ router.get('/', auth, async (req, res) => {
       group: ['xused'],
       raw: true
     });
-    console.log(totalSpent);
-    console.log(totalSpentUnused);
+    
+    // console.log(totalSpentUnused);
+    // console.log(totalSpentUnused[0]);
+    
+    // let unused = totalSpentUnused.filter(unused=> (
+    //  unused.xused===0));
+    //  console.log(unused);
+    //currently grabs only the objects with xused:0 and returns an array of objects [ { xused: 0, total_unused: 5 }, etc ]
 
     res.render('totalspent', {totalSpent, totalSpentUnused});
   });
