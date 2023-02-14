@@ -11,6 +11,8 @@ homeLink.addEventListener('click', function goToHome () {
     document.location.replace('/');
 });
 
+
+
 //logout
 const logoutLink = document.querySelector('#logout');
 if (logoutLink) {
