@@ -8,4 +8,7 @@ router.use('/users', userRoutes);
 router.use('/purchases', purchaseRoutes);
 router.use('/categories', categoryRoutes);
 
+
+
+
 module.exports = router;
