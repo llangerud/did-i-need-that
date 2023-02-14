@@ -17,6 +17,7 @@ router.get('/', auth, async (req, res) => {
     let allPurchasesByUser = await Purchase.findAll({
       where: {user_id: req.session.user_id}
     });
+    //would need a parameter to only find purchases between date ranges to work monthly
     console.log(allPurchasesByUser);
 
     let purchaseData = allPurchasesByUser.map((purchase)=> purchase.get({plain: true}));
@@ -37,16 +38,19 @@ router.get('/', auth, async (req, res) => {
       group: ['xused'],
       raw: true
     });
+    console.log(totalSpentUnused);
     
     // console.log(totalSpentUnused);
     // console.log(totalSpentUnused[0]);
     
-    // let unused = totalSpentUnused.filter(unused=> (
-    //  unused.xused===0));
-    //  console.log(unused);
-    //currently grabs only the objects with xused:0 and returns an array of objects [ { xused: 0, total_unused: 5 }, etc ]
-
-    res.render('totalspent', {totalSpent, totalSpentUnused});
+    let unused = totalSpentUnused.filter(unused=> (
+     unused.xused===0));
+     console.log(unused);
+    // currently grabs only the objects with xused:0 and returns an array of objects [ { xused: 0, total_unused: 5 }, etc ]
+   
+    const totalUnused = unused.reduce((accumulator, price) => accumulator + price.total_unused, 0);
+    console.log(totalUnused);
+    res.render('totalspent', {totalSpent, totalUnused});
   });
   
 

@@ -1,13 +1,14 @@
 const router = require('express').Router();
 const { User } = require ('../../models');
 const auth = require('../../utils/auth');
+require('dotenv').config();
 const nodemailer = require ('nodemailer');
 
 let transporter = nodemailer.createTransport({
   service: 'hotmail',
   auth: {
-    user: "did_i_need_that@hotmail.com", 
-    pass: process.env.EMAIL_PW, 
+    user: process.env.NM_USER, 
+    pass: process.env.NM_PASS, 
   },
   
 });
@@ -80,6 +81,7 @@ router.post('/', async (req, res) => {
       req.session.destroy(() => {
         res.status(204).end();
       });
+      
     } else {
       res.status(404).end();
     }
