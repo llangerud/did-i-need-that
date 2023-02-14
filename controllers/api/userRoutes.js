@@ -1,7 +1,16 @@
 const router = require('express').Router();
 const { User } = require ('../../models');
 const auth = require('../../utils/auth');
+const nodemailer = require ('nodemailer');
 
+let transporter = nodemailer.createTransport({
+  service: 'hotmail',
+  auth: {
+    user: "did_i_need_that@hotmail.com", 
+    pass: process.env.EMAIL_PW, 
+  },
+  
+});
 
 router.post('/', async (req, res) => {
   try {
@@ -10,18 +19,26 @@ router.post('/', async (req, res) => {
       email: req.body.email,
       password: req.body.password
     });
-    //leave commented out
-    // console.log("user create",userData)
+    
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
       req.session.user_name = userData.user_name
       req.session.email = userData.email
       res.status(200).json(userData);
-    // });
+    
     });
+    let emailed = await transporter.sendMail({
+      from: '"You" <did_i_need_that@hotmail.com>', 
+      to: "did_i_need_that@hotmail.com", 
+      subject: `"Welcome to DINT!"`, 
+      text: `"Thanks for joining us at DINT! Start logging your purchases now to learn more about your spending habits."`, 
+      html: `<b>"Thanks for joining us at DINT! Start logging your purchases now to learn more about your spending habits."<b>`,
+    });
+    console.log(emailed);
     } catch (err) {
     console.log(err);
+    
     res.status(400).json(err);
   }
 });
