@@ -19,6 +19,7 @@
   </div>
 </div>
 
+<br></br>
 
 <div class="card mx-auto">
   <div class="card-body">
@@ -28,19 +29,31 @@
   </div>
 </div>
 
+<br></br>
 
 <div class="card mx-auto">
   <div class="card-body">
     <h5 class="card-title">Consciously Consume</h5>
     <p class="card-text">Get email reminders once a month and update whether you've used a purchase or not</p>
     
-     {{#if session.logged_in}}
+     {{!-- {{#if session.logged_in}}
        <a href="/dashboard" class="btn btn-success">Get Started</a>
         {{else}}
         <a href="/signup" class="btn btn-success">Get Started</a>
-        {{/if}}
+        {{/if}} --}}
     
   </div>
  </div>
+</div>
+
+<br></br>
+
+<div>
+       {{#if session.logged_in}}
+       <a href="/dashboard" class="btn btn-info">Get Started</a>
+        {{else}}
+        <a href="/signup" class="btn btn-info">Get Started</a>
+        {{/if}}
+
 </div>
 </div>

@@ -2,7 +2,7 @@
 
 <div class="container text-center pt-3">
   <div class="row align-items-start">
-    <div class="col">
+    <div class="col bg-info-subtle">
       Add a new purchase
   <form id="purchase-form">
     <div class="input-group mb-3">
@@ -17,7 +17,7 @@
     {{/each}} 
     </select>
 </div>
- <label for="name" class="form-label">Purchase Name</label>
+ <label for="name" class="form-label border-5">Purchase Name</label>
 <input id="name"class="form-control" type="text" default="rollerskates" aria-label="default input example">
 <br>
 <label for="price" class="form-label">Purchase Price</label>
@@ -28,14 +28,16 @@
 <br>
 
 
-<button type="submit" class="btn btn-primary">Submit</button>
+<button type="submit" class="btn btn-info">Submit</button>
+
+<br></br>
 </form>
 
 
     </div>
     <div class="col">
       <button type="submit" class="btn btn-secondary" id="update-purchase">update purchase use</button>
-      <button type="submit" class="btn btn-danger" id="total-spent">Where is my money going?</button>
+      <button type="submit" class="btn btn-secondary" id="total-spent">Where is my money going?</button>
 
       {{!-- Use a partial that has purchase data from the server --}}
     {{!-- </div>
