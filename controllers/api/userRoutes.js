@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User } = require ('../../models');
 const auth = require('../../utils/auth');
+require('dotenv').config();
 const nodemailer = require ('nodemailer');
 
 let transporter = nodemailer.createTransport({
