@@ -13,10 +13,24 @@ homeLink.addEventListener('click', function goToHome () {
 
 //logout
 const logoutLink = document.querySelector('#logout');
-logoutLink.addEventListener('click', function goTologout () {
-    document.location.replace('/');
+if (logoutLink) {
+logoutLink.addEventListener('click', async function goTologout () {
+    const response = await fetch('/api/users/logout', {
+        method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+      });
+  
+      if (response.ok) {
+        alert('logged out')  
+        document.location.replace('/login');
+      } else {
+        alert('did not log out');
+      }
 });
+    
 
+}
+else {
 //login
 const loginLink = document.querySelector('#login');
 loginLink.addEventListener('click', function goTologin () {
@@ -29,4 +43,5 @@ signupLink.addEventListener('click', function goTosignup() {
     document.location.replace('/signup');
 });
 
+};
 
