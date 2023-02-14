@@ -28,7 +28,8 @@ Purchase.init({
     },
     xused: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
+        defaultValue: 0
 
     },
 
