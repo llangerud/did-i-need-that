@@ -16,9 +16,9 @@ event.preventDefault();
   
       if (response.ok) {
         // If successful, redirect the browser to the main page
-        setTimeout(() => {
+        // setTimeout(() => {
            document.location.replace('/dashboard');
-        }, 100);
+        // }, 100);
 
        
       } else {
