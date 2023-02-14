@@ -33,7 +33,13 @@
   <div class="card-body">
     <h5 class="card-title">Consciously Consume</h5>
     <p class="card-text">Get email reminders once a month and update whether you've used a purchase or not</p>
-    <a href="/signup" class="btn btn-success">Get Started</a>
+    
+     {{#if session.logged_in}}
+       <a href="/dashboard" class="btn btn-success">Get Started</a>
+        {{else}}
+        <a href="/signup" class="btn btn-success">Get Started</a>
+        {{/if}}
+    
   </div>
  </div>
 </div>
