@@ -40,17 +40,17 @@ After your database is seeded you will be able to start the server. Run the comm
 
 Here are some screenshots to demonstrate the functionality and show the rendered page.
 
-Homepage Logged Out:![Image](public\assets\HomepageLoggedOut.jpg)
+Homepage Logged Out:![Image](/public/assets/HomepageLoggedOut.jpg)
 
-Homepage Logged In:![Image](public\assets\HomepageLoggedIn.jpg)
+Homepage Logged In:![Image](/public/assets/HomepageLoggedIn.jpg)
 
-Dashboard:![Image](public\assets\Dashboard.jpg)
+Dashboard:![Image](/public/assets/Dashboard.jpg)
 
-Login:![Image](public\assets\Login.jpg)
+Login:![Image](/public/assets/Login.jpg)
 
-Purchases:![Image](public\assets\Purchases.jpg)
+Purchases:![Image](/public/assets/Purchases.jpg)
 
-Signup:![Image](public\assets\Signup.jpg)
+Signup:![Image](/public/assets/Signup.jpg)
 
 ## Credits
 [Lily](https://github.com/llangerud)
