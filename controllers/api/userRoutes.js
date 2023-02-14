@@ -7,8 +7,8 @@ const nodemailer = require ('nodemailer');
 let transporter = nodemailer.createTransport({
   service: 'hotmail',
   auth: {
-    user: "did_i_need_that@hotmail.com", 
-    pass: process.env.EMAIL_PW, 
+    user: process.env.NM_USER, 
+    pass: process.env.NM_PASS, 
   },
   
 });
