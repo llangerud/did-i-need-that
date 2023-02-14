@@ -3,7 +3,7 @@
 <div class="container text-center pt-3">
   <div class="row align-items-start">
     <div class="col bg-info-subtle">
-      Add a new purchase
+      <h1 class="display-6">ADD A NEW PURCHASE</h1>
   <form id="purchase-form">
     <div class="input-group mb-3">
   <label class="input-group-text" for="inputGroupSelect01">Category</label>
@@ -17,18 +17,18 @@
     {{/each}} 
     </select>
 </div>
- <label for="name" class="form-label border-5">Purchase Name</label>
-<input id="name"class="form-control" type="text" default="rollerskates" aria-label="default input example">
+ <label for="name" class="form-label border-5"></label>
+<input id="name"class="form-control" type="text" default="rollerskates" placeholder="Enter the name of your purchase here" aria-label="Enter the name of your purchase here">
 <br>
-<label for="price" class="form-label">Purchase Price</label>
-<input id="price"class="form-control" type="text" default="item price" aria-label="default input example">
+<label for="price" class="form-label"></label>
+<input id="price"class="form-control" type="text" default="item price" placeholder="Enter price of the purchase" aria-label="Enter price of the purchase">
 <br>
-<label for="mood" class="form-label">Mood</label>
-<input id="mood"class="form-control" type="text" default="amazing" aria-label="default input example">
+<label for="mood" class="form-label"></label>
+<input id="mood"class="form-control" type="text" default="amazing" placeholder="Enter mood at time of buying purchase" aria-label="Enter mood at time of buying purchase">
 <br>
 
 
-<button type="submit" class="btn btn-info">Submit</button>
+<button type="submit" class="btn btn-info">SUBMIT</button>
 
 <br></br>
 </form>
@@ -36,8 +36,8 @@
 
     </div>
     <div class="col">
-      <button type="submit" class="btn btn-secondary" id="update-purchase">update purchase use</button>
-      <button type="submit" class="btn btn-secondary" id="total-spent">Where is my money going?</button>
+      <button type="submit" class="btn btn-secondary" id="update-purchase">UPDATE PURCHASE USE</button>
+      <button type="submit" class="btn btn-secondary" id="total-spent">WHERE IS MY MONEY GOING?</button>
 
       {{!-- Use a partial that has purchase data from the server --}}
     {{!-- </div>
