@@ -16,23 +16,23 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" id="home">Home</a>
+          <a class="nav-link active" aria-current="page" href="/" id="home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="dashboard">Dashboard</a>
+          <a class="nav-link" href="/dashboard" id="dashboard">Dashboard</a>
         </li>
         {{!-- Once the login/logout functionality is in, the javascript event listeners for these buttons will need the same logic 
         Then they can be uncommented and will toggle whether login/signout/sign in show up depending on if the user is logged in or not --}}
         {{#if session.logged_in}}
         <li class="nav-item">
-          <a class="nav-link" href="/" id="logout">Log Out</a>
+          <a class="nav-link" href="/logout" id="logout">Log Out</a>
         </li>
         {{else}}
         <li class="nav-item">
-          <a class="nav-link" id="login">Login</a>
+          <a class="nav-link" href="/login" id="login">Login</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link" id="signup">Create Account</a>
+          <a class="nav-link" href="/signup" id="signup">Create Account</a>
         </li>
         {{/if}}
       </ul>
