@@ -36,10 +36,8 @@ router.post('/', async (req, res) => {
       text: `"Thanks for joining us at DINT! Start logging your purchases now to learn more about your spending habits."`, 
       html: `<b>"Thanks for joining us at DINT! Start logging your purchases now to learn more about your spending habits."<b>`,
     });
-    console.log(emailed);
+    res.status(200).json({ message: 'email sent' });
     } catch (err) {
-    console.log(err);
-    
     res.status(400).json(err);
   }
 });
