@@ -1,7 +1,7 @@
 # did-i-need-that
 
 ## Description
-This is a web application created using the Model, View, Controller paradigm. This site is currently hosted on Heroku at [Heroku](#https://did-i-need-that.herokuapp.com/) and can also be locally run using the files located in the [GitHub](#https://github.com/llangerud/did-i-need-that) repo. To learn how to run this application please continue to the [Installation](#installation) and [Usage](#usage) sections.
+This is a web application created using the Model, View, Controller paradigm. This site is currently hosted on Heroku at [Heroku](https://did-i-need-that.herokuapp.com/) and can also be locally run using the files located in the [GitHub](https://github.com/llangerud/did-i-need-that) repo. To learn how to run this application please continue to the [Installation](#installation) and [Usage](#usage) sections.
 
 ## Table of Contents
 
@@ -36,7 +36,7 @@ Once your .env file has been created you will be able to run the source command 
 
 Now you have successfully sourced your database, in the root directory terminal run the command "npm run seed".
 
-After your database is seeded you will be able to start the server. Run the command "node server.js". Now you can navigate to [http://localhost:3001/](#http://localhost:3001/) in your browser. This will take your to the homepage of the application. To view the app in its current deployed state visit [Heroku](#https://did-i-need-that.herokuapp.com/).
+After your database is seeded you will be able to start the server. Run the command "node server.js". Now you can navigate to [http://localhost:3001/](http://localhost:3001/) in your browser. This will take your to the homepage of the application. To view the app in its current deployed state visit [Heroku](https://did-i-need-that.herokuapp.com/).
 
 Here are some screenshots to demonstrate the functionality and show the rendered page.
 
@@ -53,10 +53,10 @@ Purchases:![Image](public\assets\Purchases.jpg)
 Signup:![Image](public\assets\Signup.jpg)
 
 ## Credits
-[Lily](#https://github.com/llangerud)
-[Carrie](#https://github.com/CarrieLJ)
-[Krister](#https://github.com/kristermyr)
-[Ben](#https://github.com/Benmarz10)
+[Lily](https://github.com/llangerud)
+[Carrie](https://github.com/CarrieLJ)
+[Krister](https://github.com/kristermyr)
+[Ben](https://github.com/Benmarz10)
 
 This application uses express, handlebars, sequelize, and node.
 
@@ -65,4 +65,4 @@ This application uses express, handlebars, sequelize, and node.
 This project is under MIT license
 
 ## Tests
-To test this application you can run the server locally or navigate to the [Heroku](#https://did-i-need-that.herokuapp.com/).
+To test this application you can run the server locally or navigate to the [Heroku](https://did-i-need-that.herokuapp.com/).
