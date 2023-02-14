@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
   }
 });
 
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard',auth, async (req, res) => {
     try {
       
       const categoryData = await Category.findAll({
