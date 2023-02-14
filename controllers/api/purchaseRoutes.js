@@ -29,7 +29,6 @@ router.get('/', auth, async (req, res) => {
       where: {user_id: req.session.user_id}
     });
     //would need a parameter to only find purchases between date ranges to work monthly
-    console.log(allPurchasesByUser);
 
     let purchaseData = allPurchasesByUser.map((purchase)=> purchase.get({plain: true}));
 
@@ -49,18 +48,12 @@ router.get('/', auth, async (req, res) => {
       group: ['xused'],
       raw: true
     });
-    console.log(totalSpentUnused);
-    
-    // console.log(totalSpentUnused);
-    // console.log(totalSpentUnused[0]);
-    
+        
     let unused = totalSpentUnused.filter(unused=> (
      unused.xused===0));
-     console.log(unused);
     // currently grabs only the objects with xused:0 and returns an array of objects [ { xused: 0, total_unused: 5 }, etc ]
    
     const totalUnused = unused.reduce((accumulator, price) => accumulator + price.total_unused, 0);
-    console.log(totalUnused);
     res.render('totalspent', {totalSpent, totalUnused});
   });
 
@@ -74,8 +67,6 @@ router.get('/', auth, async (req, res) => {
     attributes: ['name'],
     raw: true
   });
-
-  console.log(purchaseList);
   
   emailContent = purchaseList.map(purchase=>purchase.name)
   
@@ -86,8 +77,7 @@ router.get('/', auth, async (req, res) => {
     text: `${emailContent}`, 
     // html: `<b>"Thanks for joining us at DINT! Start logging your purchases now to learn more about your spending habits."<b>`,
   });
-   console.log(emailed);
-   res.status(200).json(emailed);
+   res.status(200).json({ message: 'email sent' });
  } catch (err) {
 res.status(400).json(err);
  }
@@ -126,15 +116,10 @@ router.post('/addnew', async (req, res) => {
     }
 });
 
-//will update xused for each purchase in the array of checked purchases
+//updates xused for each purchase in the array of checked purchases
 router.put('/updateused', auth, async (req, res) => {
 try {
 let names = req.body;
-
-//  const updated = await Purchase.update({ xused: sequelize.literal('xused + 1') }, { where: { name: { [sequelize.Op.in]: names } } });
-//  let updateXused = Purchase.findAll({
-//  where: {user_id: req.session.user_id} 
- 
 const updated = await Purchase.update(
   {xused: sequelize.literal('xused + 1')},
   {
@@ -144,8 +129,6 @@ const updated = await Purchase.update(
   }
 
 );
-
-//  })
 
  if (!updated) {
   res.status(200).json({ message: 'Nothing was used' });
@@ -157,10 +140,6 @@ res.status(200).json(updated);
 }
 
 });
-
-
-
-
 
 router.put('/:id', auth, (req, res) => {
     Purchase.update(req.body, {

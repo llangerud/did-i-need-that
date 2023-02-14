@@ -13,15 +13,5 @@ const sequelize = process.env.JAWSDB_URL
       port:3306,
     });
 
-// const nodemailer = require ('nodemailer');
-
-// const transporter = nodemailer.createTransport({
-//   service: 'hotmail',
-//   auth: {
-//     user: "did_i_need_that@hotmail.com", 
-//     pass: process.env.EMAIL_PW, 
-//   },
-  
-// });
 
 module.exports = sequelize;
