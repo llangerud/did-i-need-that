@@ -2,6 +2,17 @@ const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { Purchase, Category } = require ('../../models');
 const auth = require('../../utils/auth');
+require('dotenv').config();
+const nodemailer = require ('nodemailer');
+
+let transporter = nodemailer.createTransport({
+  service: 'hotmail',
+  auth: {
+    user: process.env.NM_USER, 
+    pass: process.env.NM_PASS, 
+  },
+  
+});
 
 router.get('/', auth, async (req, res) => {
     try {
@@ -52,6 +63,35 @@ router.get('/', auth, async (req, res) => {
     console.log(totalUnused);
     res.render('totalspent', {totalSpent, totalUnused});
   });
+
+  //function to get an email to send when user clicks
+  router.get('/unusedemail', auth, async (req, res)=> {
+ try{
+    let purchaseList = await Purchase.findAll({
+    where: {user_id: req.session.user_id,
+            xused: 0         
+    },
+    attributes: ['name'],
+    raw: true
+  });
+
+  console.log(purchaseList);
+  
+  emailContent = purchaseList.map(purchase=>purchase.name)
+  
+  let emailed = await transporter.sendMail({
+    from: '"You" <did_i_need_that@hotmail.com>', 
+    to: "did_i_need_that@hotmail.com", 
+    subject: `"Here's the stuff you don't use"`, 
+    text: `${emailContent}`, 
+    // html: `<b>"Thanks for joining us at DINT! Start logging your purchases now to learn more about your spending habits."<b>`,
+  });
+   console.log(emailed);
+   res.status(200).json(emailed);
+ } catch (err) {
+res.status(400).json(err);
+ }
+   });
   
 
 router.get('/:id', auth, async (req, res) => {
