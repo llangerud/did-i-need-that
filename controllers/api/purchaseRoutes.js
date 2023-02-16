@@ -53,7 +53,8 @@ router.get('/', auth, async (req, res) => {
      unused.xused===0));
     // currently grabs only the objects with xused:0 and returns an array of objects [ { xused: 0, total_unused: 5 }, etc ]
    
-    const totalUnused = unused.reduce((accumulator, price) => accumulator + price.total_unused, 0);
+    let totalUnused = unused.reduce((accumulator, price) => accumulator + price.total_unused, 0);
+    totalUnused = parseInt(totalUnused);
     res.render('totalspent', {totalSpent, totalUnused});
   });
 
