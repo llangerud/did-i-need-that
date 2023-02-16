@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
   } catch (err) {
     res.status(400).json({ message: 'error' });
   }
- //removed error catch as creating accounts without demo email address causes app to crash  
+ 
 });
   
   router.post('/login', async (req, res) => {
