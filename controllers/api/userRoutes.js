@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
       req.session.logged_in = true;
       req.session.user_name = userData.user_name
       req.session.email = userData.email
-      res.status(200).json(userData);
+      // res.status(200).json(userData);
     
     });
     let emailed = await transporter.sendMail({
@@ -37,9 +37,10 @@ router.post('/', async (req, res) => {
       html: `<b>"Thanks for joining us at DINT! Start logging your purchases now to learn more about your spending habits."<b>`,
     });
     res.status(200).json({ message: 'email sent' });
-    } catch (err) {
-    res.status(400).json(err);
+  } catch (err) {
+    res.status(400).json({ message: 'error' });
   }
+ 
 });
   
   router.post('/login', async (req, res) => {

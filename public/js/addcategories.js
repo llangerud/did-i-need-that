@@ -7,7 +7,7 @@ event.preventDefault();
     const name4 = document.querySelector('#four').value.trim();
     const name = [{name:name1}, {name:name2}, {name:name3}, {name:name4}];
       
-
+//collects the user category inputs and sends them to the categories route
       const response = await fetch('/api/categories', {
         method: 'POST',
         body: JSON.stringify(name),

@@ -5,6 +5,7 @@ const auth = require('../../utils/auth');
 require('dotenv').config();
 const nodemailer = require ('nodemailer');
 
+//creates a reusable transporter object, env variables are in Heroku
 let transporter = nodemailer.createTransport({
   service: 'hotmail',
   auth: {
@@ -35,6 +36,8 @@ router.get('/', auth, async (req, res) => {
     res.render('didiuse', {purchaseData});
   });
 
+  //xused property is increased by 1 on the checkbox page if the box is left checked
+  //this query is getting all the purchases by user and summing
   router.get('/totalspent', auth, async (req, res)=> {
     let totalSpent = await Purchase.sum('price', {
       where: {user_id: req.session.user_id},
@@ -48,16 +51,18 @@ router.get('/', auth, async (req, res) => {
       group: ['xused'],
       raw: true
     });
-        
+    //this filters for xused 0 to get all the items never used    
     let unused = totalSpentUnused.filter(unused=> (
      unused.xused===0));
     // currently grabs only the objects with xused:0 and returns an array of objects [ { xused: 0, total_unused: 5 }, etc ]
-   
-    const totalUnused = unused.reduce((accumulator, price) => accumulator + price.total_unused, 0);
+    //running reduce on the above sums the total, parseInt takes out the leading 0
+    let totalUnused = unused.reduce((accumulator, price) => accumulator + price.total_unused, 0);
+    totalUnused = parseInt(totalUnused);
     res.render('totalspent', {totalSpent, totalUnused});
   });
 
   //function to get an email to send when user clicks
+  //finds all the purchases the user has never used (xused = 0) and emails those
   router.get('/unusedemail', auth, async (req, res)=> {
  try{
     let purchaseList = await Purchase.findAll({
@@ -116,7 +121,7 @@ router.post('/addnew', async (req, res) => {
     }
 });
 
-//updates xused for each purchase in the array of checked purchases
+//updates xused by 1 for each purchase in the array of checked purchases
 router.put('/updateused', auth, async (req, res) => {
 try {
 let names = req.body;

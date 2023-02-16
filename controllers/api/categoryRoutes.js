@@ -20,7 +20,7 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
-
+  //this route creates the categories based on the user inputs during the login
   router.post('/', async (req, res) => {
     try {
       
